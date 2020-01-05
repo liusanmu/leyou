@@ -1,4 +1,4 @@
-/*import com.fasterxml.jackson.core.JsonProcessingException;
+package com.leyou;/*import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ public class JsonUtils {
 /*
     public static final ObjectMapper mapper = new ObjectMapper();
 
-    private static final Logger logger = LoggerFactory.getLogger(JsonUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(com.leyou.JsonUtils.class);
 
     @Nullable
     public static String serialize(Object obj) {
