@@ -32,7 +32,7 @@
         <mysql.version>5.1.32</mysql.version>
         <pageHelper.starter.version>1.2.12</pageHelper.starter.version>
         <leyou.latest.version>0.0.1-SNAPSHOT</leyou.latest.version>
-        <fastDFS.client.version>1.25.4-RELEASE</fastDFS.client.version>
+        <fastDFS.client.version>1.26.6</fastDFS.client.version>
     </properties>
 
     <dependencyManagement>
@@ -73,7 +73,7 @@
             <dependency>
                 <groupId>com.github.tobato</groupId>
                 <artifactId>fastdfs-client</artifactId>
-                <version>1.25.4-RELEASE</version>
+                <version>${fastDFS.client.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
