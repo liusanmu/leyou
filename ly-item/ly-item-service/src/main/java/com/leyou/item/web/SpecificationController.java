@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,10 +52,16 @@ public class SpecificationController {
      * @return
      */
     @GetMapping("params")
-    public ResponseEntity<List<SpecParam>> queryParams(@RequestParam("gid")Long gid){
-        List<SpecParam>  params = this.specificationService.queryParams(gid);
+    public ResponseEntity<List<SpecParam>> queryParams(
+            @RequestParam(value = "gid", required = false)Long gid,
+            @RequestParam(value = "cid", required = false)Long cid,
+            @RequestParam(value = "generic", required = false)Boolean generic,
+            @RequestParam(value = "searching", required = false)Boolean searching
+    ){
+
+        List<SpecParam> params = this.specificationService.queryParams(gid, cid, generic, searching);
+
         if (CollectionUtils.isEmpty(params)){
-            System.out.println(params);
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(params);
@@ -65,49 +71,19 @@ public class SpecificationController {
     @PostMapping("groups")
     public ResponseEntity<Void> saveGroup(@RequestBody SpecGroup specGroup){
         this.specificationService.saveGroup(specGroup);
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
-    @PostMapping("groups")
-    public ResponseEntity<Void> saveGroup(@RequestBody SpecGroup specGroup){
+    @PutMapping("groups")
+    public ResponseEntity<Void> updateGroup(@RequestBody SpecGroup specGroup){
         this.specificationService.updateGroup(specGroup);
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     @DeleteMapping("groups")
     public ResponseEntity<Void> deleteGroup(@RequestBody SpecGroup specGroup){
         this.specificationService.deleteGroup(specGroup);
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
-    }
-
- /*   @PostMapping
-    public ResponseEntity<Void> saveBrand(@RequestParam(value = "cids") List<Long> categories, Brand brand) {
-        this.brandService.saveBrand(categories, brand);
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
-    }
-
-    *//**
-     *  品牌的修改
-     * @param categories
-     * @param brand
-     * @return
-     *//*
-    @PutMapping
-    public ResponseEntity<Void> updateBrand(@RequestParam(value = "cids") List<Long> categories, Brand brand) {
-        this.brandService.updateBrand(categories, brand);
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
-
-
-    *//**
-     * 品牌的删除
-     * @param bid
-     * @return
-     *//*
-    @DeleteMapping
-    public ResponseEntity<Void> deleteBrand(@RequestParam(value = "id")Long bid){
-        this.brandService.deleteBrand(bid);
-        return ResponseEntity.status(HttpStatus.OK).body(null);
-    }*/
 
 }

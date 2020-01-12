@@ -1,3 +1,8 @@
 # yun
 49.233.143.68 api.leyou.com
 49.233.143.68 manage.leyou.com
+
+# heimaleyou
+127.0.0.1 api.leyou.com
+127.0.0.1 manage.leyou.com
+49.233.143.68 image.leyou.com
